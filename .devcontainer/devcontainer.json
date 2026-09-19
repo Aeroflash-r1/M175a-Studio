@@ -1,0 +1,32 @@
+{
+  "name": "M175a Studio",
+  "image": "mcr.microsoft.com/devcontainers/android:1.2.1",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "installGradle": false
+    },
+    "ghcr.io/devcontainers-extra/features/android-sdk:1": {
+      "version": "latest"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "fwcd.kotlin",
+        "mathiasfrohlich.Kotlin",
+        "ms-python.python",
+        "GitHub.copilot"
+      ]
+    }
+  },
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Windows bridge (IPP/eSCL/web UI)",
+      "onAutoForward": "notify"
+    }
+  },
+  "remoteUser": "vscode"
+}

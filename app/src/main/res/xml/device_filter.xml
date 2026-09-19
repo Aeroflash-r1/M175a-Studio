@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Any Hewlett-Packard USB device (vendor 03f0). Covers HP LaserJet 100 MFP M175 (PID 062A). -->
+<resources>
+    <usb-device vendor-id="1008" />
+</resources>

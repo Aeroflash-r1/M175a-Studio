@@ -1,0 +1,11 @@
+{
+  "toner": {
+    "black": 81,
+    "cyan": 9,
+    "magenta": 9,
+    "yellow": 11
+  },
+  "status_oids": [],
+  "pages": 0,
+  "other_supplies": {}
+}

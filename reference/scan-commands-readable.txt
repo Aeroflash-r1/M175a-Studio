@@ -1,0 +1,64 @@
+POST / HTTP/1.1
+Host: http:0
+User-Agent: gSOAP/2.7
+Content-Type: application/soap+xml; charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+
+19E
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope" xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wscn="http://tempuri.org/wscn.xsd"><SOAP-ENV:Body><wscn:GetScannerElements></wscn:GetScannerElements></SOAP-ENV:Body></SOAP-ENV:Envelope>POST / HTTP/1.1
+Host: http:0
+User-Agent: gSOAP/2.7
+Content-Type: application/soap+xml; charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+
+19E
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope" xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wscn="http://tempuri.org/wscn.xsd"><SOAP-ENV:Body><wscn:GetScannerElements></wscn:GetScannerElements></SOAP-ENV:Body></SOAP-ENV:Envelope>POST / HTTP/1.1
+Host: http:0
+User-Agent: gSOAP/2.7
+Content-Type: application/soap+xml; charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+
+19E
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope" xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wscn="http://tempuri.org/wscn.xsd"><SOAP-ENV:Body><wscn:GetScannerElements></wscn:GetScannerElements></SOAP-ENV:Body></SOAP-ENV:Envelope>POST / HTTP/1.1
+Host: http:0
+User-Agent: gSOAP/2.7
+Content-Type: application/soap+xml; charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+
+5D4
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope" xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wscn="http://tempuri.org/wscn.xsd"><SOAP-ENV:Body><wscn:CreateScanJobRequest><ScanIdentifier></ScanIdentifier><ScanTicket><JobDescription></JobDescription><DocumentParameters><Format>jfif</Format><CompressionQualityFactor>0</CompressionQualityFactor><ImagesToTransfer>0</ImagesToTransfer><InputSource>Platen</InputSource><ContentType>Auto</ContentType><InputSize><InputMediaSize><Width>8500</Width><Height>11690</Height></InputMediaSize><DocumentSizeAutoDetect>false</DocumentSizeAutoDetect></InputSize><Exposure><AutoExposure>false</AutoExposure><ExposureSettings><Contrast>0</Contrast></ExposureSettings></Exposure><MediaSides><MediaFront><ScanRegion><ScanRegionXOffset>0</ScanRegionXOffset><ScanRegionYOffset>0</ScanRegionYOffset><ScanRegionWidth>8500</ScanRegionWidth><ScanRegionHeight>11690</ScanRegionHeight></ScanRegion><ColorProcessing>RGB24</ColorProcessing><Resolution><Width>300</Width><Height>300</Height></Resolution></MediaFront></MediaSides></DocumentParameters><RetrieveImageTimeout>300</RetrieveImageTimeout><ScanManufacturingParameters><DisableImageProcessing>false</DisableImageProcessing></ScanManufacturingParameters></ScanTicket></wscn:CreateScanJobRequest></SOAP-ENV:Body></SOAP-ENV:Envelope>POST / HTTP/1.1
+Host: http:0
+User-Agent: gSOAP/2.7
+Content-Type: application/soap+xml; charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+
+1F2
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope" xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wscn="http://tempuri.org/wscn.xsd"><SOAP-ENV:Body><wscn:RetrieveImageRequest><JobId>1</JobId><JobToken></JobToken><DocumentDescription></DocumentDescription></wscn:RetrieveImageRequest></SOAP-ENV:Body></SOAP-ENV:Envelope>POST / HTTP/1.1
+Host: http:0
+User-Agent: gSOAP/2.7
+Content-Type: application/soap+xml; charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+
+19E
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope" xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wscn="http://tempuri.org/wscn.xsd"><SOAP-ENV:Body><wscn:GetJobInfo><jobId>1</jobId></wscn:GetJobInfo></SOAP-ENV:Body></SOAP-ENV:Envelope>POST / HTTP/1.1
+Host: http:0
+User-Agent: gSOAP/2.7
+Content-Type: application/soap+xml; charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+
+1A8
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope" xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wscn="http://tempuri.org/wscn.xsd"><SOAP-ENV:Body><wscn:GetPreviousImagePadInfo></wscn:GetPreviousImagePadInfo></SOAP-ENV:Body></SOAP-ENV:Envelope>

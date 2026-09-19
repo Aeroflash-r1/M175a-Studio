@@ -1,0 +1,10 @@
+{
+  "printer_name": "",
+  "http_port": 8080,
+  "device_name": "HP Color LaserJet MFP M175a",
+  "device_uuid": "ce1f6a20-0002-3d17-8d3a-6d31373561",
+  "scan_dpi": 200,
+  "scan_color": "color",
+  "max_scan_pages": 20,
+  "advertise_hotspot": true
+}

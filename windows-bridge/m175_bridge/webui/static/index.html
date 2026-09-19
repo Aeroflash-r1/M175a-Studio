@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M175 Bridge</title>
+<style>
+ body{font-family:Segoe UI,Roboto,sans-serif;background:#0f172a;color:#e2e8f0;
+      max-width:760px;margin:24px auto;padding:0 16px}
+ h1{color:#38bdf8;font-size:1.4rem;margin:0 0 4px}
+ .sub{color:#94a3b8;margin-bottom:20px}
+ .card{background:#1e293b;border-radius:12px;padding:16px 20px;margin:14px 0}
+ .ok{color:#4ade80}.bad{color:#f87171}.dim{color:#94a3b8}
+ button{background:#2563eb;color:#fff;border:0;border-radius:8px;
+        padding:10px 18px;font-size:1rem;cursor:pointer}
+ button:disabled{opacity:.5}
+ #scanimg{max-width:100%;border-radius:8px;margin-top:10px;display:none}
+ dl{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:0}
+ dt{color:#94a3b8}dd{margin:0}
+</style>
+</head>
+<body>
+<h1>🖨️ M175 Bridge</h1>
+<div class="sub">HP Color LaserJet MFP M175a — Android print &amp; scan gateway</div>
+
+<div class="card">
+ <dl id="status">Loading…</dl>
+</div>
+
+<div class="card">
+ <h3>Scan now (flatbed)</h3>
+ <button id="scanbtn" onclick="doScan()">Scan page</button>
+ <span id="scanmsg" class="dim"></span><br>
+ <img id="scanimg" alt="scan preview">
+</div>
+
+<div class="card">
+ <h3>Manual duplex (two-pass)</h3>
+ <button id="dxstart" onclick="duplexStart()">Start duplex job</button>
+ <span id="dxmsg" class="dim"></span>
+ <div id="flipcard" style="display:none;margin-top:14px;background:#334155;
+      border-radius:10px;padding:14px">
+  <div style="font-size:1.2rem;color:#fbbf24">🔄 FLIP THE STACK NOW</div>
+  <ol style="margin:8px 0 8px 18px;padding:0">
+   <li>Take the printed stack <b>as-is</b> from the output tray</li>
+   <li>Flip the <b>whole stack over like a book page</b></li>
+   <li>Blank sides now face up — same edge stays on top</li>
+   <li>Reinsert the stack into the tray</li>
+  </ol>
+  <button id="dxgo" onclick="duplexContinue()">Done — print second side</button>
+ </div>
+</div>
+
+<div class="card">
+ <h3>Phone setup</h3>
+ <p><b>Printing:</b> Android Settings → Connected devices → Printing →
+    Default Print Service (or Mopria) → the printer appears automatically
+    on this Wi-Fi. Or Add printer by IP:
+    <code id="ippurl">http://THIS-PC:8080/ipp/print</code></p>
+ <p><b>Scanning:</b> install <i>Mopria Scan</i> (or any eSCL/AirScan app)
+    → the scanner appears automatically. Apps like "Fast Scanner (eSCL)"
+    also work.</p>
+</div>
+
+<script>
+async function refresh(){
+ try{
+  const r=await fetch('/api/status');const s=await r.json();
+  const rows=[
+   ['Printer state',s.state],
+   ['Detail',s.detail],
+   ['Toner (from USB PML)',s.toner.black<0?'not decoded yet (run USB capture)':
+     'K '+s.toner.black+'%  C '+s.toner.cyan+'%  M '+s.toner.magenta+'%  Y '+s.toner.yellow+'%'],
+   ['Jobs printed from phone',s.jobs_sent],
+   ['Duplex',s.duplex||'idle'],
+   ['Scanners (WIA)',(s.scanners&&s.scanners.length)?s.scanners.join(', '):'none found'],
+  ];
+  document.getElementById('status').innerHTML=rows.map(([k,v])=>
+   `<dt>${k}</dt><dd>${String(v).replace(/</g,'&lt;')}</dd>`).join('');
+ }catch(e){document.getElementById('status').innerHTML='<dt></dt><dd class="bad">server unreachable</dd>'}
+ setTimeout(refresh,4000);
+}
+async function doScan(){
+ const b=document.getElementById('scanbtn'),m=document.getElementById('scanmsg');
+ b.disabled=true;m.textContent='scanning — put page on glass…';
+ try{
+  const r=await fetch('/api/scan',{method:'POST'});
+  const j=await r.json();
+  if(j.ok){const img=document.getElementById('scanimg');
+   img.src=j.url+'?t='+Date.now();img.style.display='block';
+   m.textContent='done';}
+  else{m.textContent='failed: '+j.error}
+ }catch(e){m.textContent='failed: '+e}
+ b.disabled=false;
+}
+async function duplexStart(){
+ const b=document.getElementById('dxstart'),m=document.getElementById('dxmsg');
+ b.disabled=true;m.textContent='printing backs (pass 1)…';
+ try{
+  const r=await fetch('/api/duplex/start',{method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({})});
+  const j=await r.json();
+  if(j.ok&&j.stage==='awaiting-flip'){
+   m.textContent='pass 1 done — see below';
+   document.getElementById('flipcard').style.display='block';
+  } else {m.textContent='failed: '+(j.error||'unknown')}
+ }catch(e){m.textContent='failed: '+e}
+ b.disabled=false;
+}
+async function duplexContinue(){
+ const b=document.getElementById('dxgo'),m=document.getElementById('dxmsg');
+ b.disabled=true;
+ try{
+  const r=await fetch('/api/duplex/continue',{method:'POST'});
+  const j=await r.json();
+  if(j.ok){m.textContent='✅ both sides printed — check collation!';
+   document.getElementById('flipcard').style.display='none';}
+  else{m.textContent='failed: '+j.error}
+ }catch(e){m.textContent='failed: '+e}
+ b.disabled=false;
+}
+fetch('/api/status').then(()=>{const u=new URL('/ipp/print',location);
+ document.getElementById('ippurl').textContent=u.href});refresh();
+</script>
+</body>
+</html>

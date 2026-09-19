@@ -1,0 +1,30 @@
+# --- Android / Gradle ---
+*.iml
+.gradle/
+build/
+/local.properties
+.idea/
+.DS_Store
+captures
+.externalNativeBuild
+.cxx
+*.apk.idsig
+app/build-tmp/
+
+# --- Python (windows-bridge) ---
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# --- PC-side run artifacts (never commit captures or temp) ---
+captures/
+tmp/
+*.pcap
+*.pcapng
+*.log
+
+# --- Keystore/material you must never leak ---
+*.jks
+*.keystore
+keystore.properties
