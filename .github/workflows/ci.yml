@@ -20,8 +20,11 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      # The ubuntu-latest runner ships a complete Android SDK at $ANDROID_HOME
+      # (android-actions/setup-android@v3 fails on current images: it tries to
+      # install the removed 'tools' package). Just accept licenses.
+      - name: Accept SDK licenses
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
 
       - name: Gradle wrapper validation
         uses: gradle/actions/wrapper-validation@v4
